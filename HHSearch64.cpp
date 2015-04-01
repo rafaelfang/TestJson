@@ -39,7 +39,15 @@ void HHSearch64::jsonParser() {
 
 	is.close();
 }
-
+void HHSearch64::setHHSearchLibrary() {
+	string libPath = "export HHLIB=";
+	libPath += alignmentToolLocation;
+	libPath += "/lib/hh";
+	Utility utility;
+	char* cmd = utility.convertStringToCharArr(libPath);
+	system(cmd);
+	printf("%s\n", cmd);
+}
 void HHSearch64::runAlignHits() {
 	alignhitsParameterList = "perl ";
 	alignhitsParameterList += alignmentToolLocation;
@@ -172,6 +180,7 @@ void HHSearch64::readFastaFile(string fastaFile) {
 
 void HHSearch64::executeAlignment() {
 	jsonParser();
+	setHHSearchLibrary();
 	readFastaFile(fastaFilename);
 	runAlignHits();
 	runHHMake();

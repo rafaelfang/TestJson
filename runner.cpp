@@ -14,23 +14,22 @@ int main(int argc, char* argv[]) {
 	//run the following command:
 	//export HHLIB=<install_dir>/lib/hh
 	//export HHLIB=~lihongb/Tools/hhsearch64/lib/hh
-	Blast blast1(argv[1]);
-	blast1.executeAlignment();
-	Blast blast2(argv[2]);
-	blast2.executeAlignment();
-	HHSearch64 hhsearch1(argv[3]);
-	hhsearch1.executeAlignment();
-	HHSearch64 hhsearch2(argv[4]);
-	hhsearch2.executeAlignment();
-	//AlignmentTool* alignmentPtr[4];
-	//alignmentPtr[0] = &blast1;
-	//alignmentPtr[1] = &blast2;
-	//alignmentPtr[2] = &hhsearch1;
-	//alignmentPtr[3] = &hhsearch2;
-	//int i = 0;
-	//for (i = 0; i < 4; i++) {
-	//	alignmentPtr[i]->jsonParser();
-	//}
+
+	int numOfExp = 0;
+	if (argc == 0 || argc == 1) {
+		cout << "not enough arguments provided!" << endl;
+		exit(-1);
+	}
+	for (numOfExp = 1; numOfExp <= (argc - 1) / 2; numOfExp++) {
+		string methodChose(argv[2*numOfExp]);
+		if (methodChose.compare("blast") == 0) {
+			Blast blast(argv[2*numOfExp-1]);
+			blast.executeAlignment();
+		} else if (methodChose.compare("hhsearch") == 0) {
+			HHSearch64 hhsearch(argv[2*numOfExp-1]);
+			hhsearch.executeAlignment();
+		}
+	}
 
 }
 

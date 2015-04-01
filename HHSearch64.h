@@ -18,6 +18,7 @@ class HHSearch64: public AlignmentTool {
 public:
 	HHSearch64(char*);
 	virtual void jsonParser();
+	void setHHSearchLibrary();
 	void readFastaFile(string );
 	void runAlignHits();
 	void runHHMake();
