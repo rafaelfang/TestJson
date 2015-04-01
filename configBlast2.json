@@ -1,11 +1,8 @@
 {
-       	"proteinName":"T0837",
-	"aminoSeq":"SDTRKAIDTISNLLKIKPIYIESMLQEMGPRQTQMFIRSTSNGSAEEVRKAAYL",
-	"queryFileLocation":"~cf797/test/", 
+      "fastaFilename":"T0837.fasta",
 	"alignmentToolLocation":"~lihongb/Tools/BLAST2_2_21/bin/",
 	"databaseLocation":"~lihongb/DATABASE/LocalDB/",  
-	"experimentLocation":"~cf797/test/experimentPath/",
-	"methodName":"blastpgp",
+	"experimentLocation":"~cf797/test/testAlignment/",
 	"parameterSetting":
 	{
 		"-i":"T0837.seq",
