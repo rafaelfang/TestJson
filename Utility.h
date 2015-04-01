@@ -5,8 +5,8 @@
  *      Author: Chao
  */
 
-#ifndef UTILITY_H_
-#define UTILITY_H_
+#ifndef TESTBLAST_UTILITY_H_
+#define TESTBLAST_UTILITY_H_
 #include <string>
 using namespace std;
 class Utility {
@@ -16,4 +16,4 @@ public:
 	virtual ~Utility();
 };
 
-#endif /* UTILITY_H_ */
+#endif /* TESTBLAST_UTILITY_H_ */
