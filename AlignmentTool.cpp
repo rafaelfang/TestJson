@@ -10,21 +10,10 @@
 using namespace std;
 
 AlignmentTool::AlignmentTool(char* myJsonFileName) {
-	setJsonFileName(myJsonFileName);
-}
-
-void AlignmentTool::print() const {
-	cout << "This is the base class: Alignment";
+	jsonFileName = myJsonFileName;
 }
 
 AlignmentTool::~AlignmentTool() {
 	// TODO Auto-generated destructor stub
 }
 
-char* AlignmentTool::getJsonFileName() const {
-	return jsonFileName;
-}
-
-void AlignmentTool::setJsonFileName(char* jsonFileName) {
-	this->jsonFileName = jsonFileName;
-}

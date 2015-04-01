@@ -5,9 +5,12 @@
  *      Author: Chao
  */
 
-#ifndef ALIGNMENTTOOL_H_
-#define ALIGNMENTTOOL_H_
-
+#ifndef TESTBLAST_ALIGNMENTTOOL_H_
+#define TESTBLAST_ALIGNMENTTOOL_H_
+#include <iostream>
+#include <string>
+#include <cstdlib>
+#include <stdio.h>
 using namespace std;
 
 class AlignmentTool {
@@ -18,13 +21,15 @@ public:
 
 	virtual ~AlignmentTool();
 
-	virtual void jsonParser() const=0;
-	virtual void print() const;
-	char* getJsonFileName() const;
-	void setJsonFileName(char* jsonFileName);
+	virtual void jsonParser() =0;
+	virtual void readFastaFile(string)=0;
+	virtual void executeAlignment()=0;
+
 
 protected:
 	char* jsonFileName;
+	string proteinName;
+	string aminoAcids;
 };
 
-#endif /* ALIGNMENTTOOL_H_ */
+#endif /* TESTBLAST_ALIGNMENTTOOL_H_ */
