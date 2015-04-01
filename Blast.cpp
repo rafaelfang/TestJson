@@ -8,41 +8,45 @@
 #include "Blast.h"
 using namespace std;
 
-Blast::Blast(char* jsonFileName):AlignmentTool(jsonFileName)  {
+Blast::Blast(char* jsonFileName) :
+		AlignmentTool(jsonFileName) {
 
 }
-Blast::~Blast(){
+Blast::~Blast() {
 
 }
-void Blast::jsonParser() const {
+
+void Blast::readFastaFile(string fastaFile) {
+	ifstream ifs(fastaFile.c_str(), ios::in);
+	if (ifs.is_open()) {
+		getline(ifs, proteinName);
+		//cout<<proteinName<<endl;;
+		getline(ifs, aminoAcids);
+		//cout<<aminoAcids<<endl;;
+		ifs.close();
+	} else {
+		cout << "fasta file is unable to open" << endl;
+	}
+
+}
+void Blast::jsonParser() {
 	Json::Reader reader;
 	Json::Value root;
 
 	//read from file
 	ifstream is;
 	is.open(jsonFileName, ios::binary);
-	string returnString;
+
 	if (reader.parse(is, root)) {
 
 		//read info from root
-		string proteinName = root["proteinName"].asString();
-		string aminoSeq = root["aminoSeq"].asString();
-		string queryFileLocation = root["queryFileLocation"].asString();
-		string alignmentToolLocation = root["alignmentToolLocation"].asString();
-		string databaseLocation = root["databaseLocation"].asString();
-		string experimentLocation = root["experimentLocation"].asString();
-		string methodName = root["methodName"].asString();
+		fastaFilename = root["fastaFilename"].asString();
+		alignmentToolLocation = root["alignmentToolLocation"].asString();
+		databaseLocation = root["databaseLocation"].asString();
+		experimentLocation = root["experimentLocation"].asString();
 
-		//cout << "proteinName " << proteinName << endl;
-		//cout << "aminoSeq " << aminoSeq << endl;
-		//cout << "queryFileLocation " << queryFileLocation << endl;
-		//cout << "alignmentToolLocation " << alignmentToolLocation << endl;
-		//cout << "databaseLocation " << databaseLocation << endl;
-		//cout << "experimentLocation " << experimentLocation << endl;
-		//cout << "toolName " << toolName << endl;
-
-		string parameterList = alignmentToolLocation;
-		parameterList += methodName;
+		parameterList = alignmentToolLocation;
+		parameterList += "blastpgp";
 
 		for (Json::Value::iterator it = root["parameterSetting"].begin();
 				it != root["parameterSetting"].end(); it++)
@@ -59,8 +63,8 @@ void Blast::jsonParser() const {
 
 			if (tempKey.compare("-i") == 0) {
 				parameterList += " -i ";
-				parameterList += queryFileLocation;
-				parameterList += tempValue;
+				parameterList += experimentLocation;
+				parameterList += fastaFilename;
 			} else if (tempKey.compare("-o") == 0) {
 				parameterList += " -o ";
 				parameterList += experimentLocation;
@@ -98,17 +102,18 @@ void Blast::jsonParser() const {
 				parameterList += tempValue;
 			}
 		}
-		returnString += parameterList;
 
 	}
 
 	is.close();
+
+}
+void Blast::executeAlignment() {
+	jsonParser();
+	readFastaFile(fastaFilename);
 	Utility utility;
-	char* cmd = utility.convertStringToCharArr(returnString);
+	char* cmd = utility.convertStringToCharArr(parameterList);
 	system(cmd);
 	printf("%s\n", cmd);
-}
-void Blast::print() const {
-	cout << "This is the derived Blast class";
 }
 

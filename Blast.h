@@ -5,8 +5,8 @@
  *      Author: Chao
  */
 
-#ifndef BLAST_H_
-#define BLAST_H_
+#ifndef TESTBLAST_BLAST_H_
+#define TESTBLAST_BLAST_H_
 #include <assert.h>
 #include <iostream>
 #include <fstream>
@@ -18,10 +18,18 @@ class Blast: public AlignmentTool {
 public:
 	//constructor
 	Blast(char*);
-	virtual void jsonParser() const;
-	virtual void print() const;
+	virtual void jsonParser();
+	virtual void readFastaFile(string );
+	virtual void executeAlignment();
 	virtual ~Blast();
+
+private:
+	string fastaFilename;
+	string alignmentToolLocation;
+	string databaseLocation;
+	string experimentLocation;
+	string parameterList;
 
 };
 
-#endif /* BLAST_H_ */
+#endif /* TESTBLAST_BLAST_H_ */
