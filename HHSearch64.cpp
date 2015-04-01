@@ -17,7 +17,7 @@ HHSearch64::~HHSearch64() {
 	// TODO Auto-generated destructor stub
 }
 
-void HHSearch64::jsonParser() const {
+void HHSearch64::jsonParser() {
 	Json::Reader reader;
 	Json::Value root;
 
@@ -28,37 +28,43 @@ void HHSearch64::jsonParser() const {
 	if (reader.parse(is, root)) {
 
 		//read info from root
-		string proteinName = root["proteinName"].asString();
-		string aminoSeq = root["aminoSeq"].asString();
-		string queryFileLocation = root["queryFileLocation"].asString();
-		string alignmentToolLocation = root["alignmentToolLocation"].asString();
-		string databaseLocation = root["databaseLocation"].asString();
-		string experimentLocation = root["experimentLocation"].asString();
-		string methodName = root["methodName"].asString();
-		string a3m = root["-a3m"].asString();
-		//cout << "proteinName " << proteinName << endl;
-		//cout << "aminoSeq " << aminoSeq << endl;
-		//cout << "queryFileLocation " << queryFileLocation << endl;
-		//cout << "alignmentToolLocation " << alignmentToolLocation << endl;
-		//cout << "databaseLocation " << databaseLocation << endl;
-		//cout << "experimentLocation " << experimentLocation << endl;
-		//cout << "methodName " << methodName << endl;
+		fastaFilename = root["fastaFilename"].asString();
+		//cout<<fastaFilename<<endl;
+		alignmentToolLocation = root["alignmentToolLocation"].asString();
+		databaseLocation = root["databaseLocation"].asString();
+		experimentLocation = root["experimentLocation"].asString();
+		_a3m = root["-a3m"].asString();
 
-		string alignhitsParameterList = "perl ";
-		alignhitsParameterList += alignmentToolLocation;
-		alignhitsParameterList += "alignhits.pl ";
-		alignhitsParameterList += experimentLocation;
-		alignhitsParameterList += "query.blaNR ";
-		alignhitsParameterList += "-a3m ";
-		alignhitsParameterList += experimentLocation;
-		alignhitsParameterList += a3m;
+	}
 
-		Utility utility;
-		char* cmd = utility.convertStringToCharArr(alignhitsParameterList);
-		system(cmd);
-		printf("%s\n", cmd);
+	is.close();
+}
 
-		string hhmakeParameterList = alignmentToolLocation;
+void HHSearch64::runAlignHits() {
+	alignhitsParameterList = "perl ";
+	alignhitsParameterList += alignmentToolLocation;
+	alignhitsParameterList += "alignhits.pl ";
+	alignhitsParameterList += experimentLocation;
+	alignhitsParameterList += "query.blaPDB ";
+	alignhitsParameterList += "-a3m ";
+	alignhitsParameterList += experimentLocation;
+	alignhitsParameterList += _a3m;
+
+	Utility utility;
+	char* cmd = utility.convertStringToCharArr(alignhitsParameterList);
+	system(cmd);
+	printf("%s\n", cmd);
+}
+void HHSearch64::runHHMake() {
+	Json::Reader reader;
+	Json::Value root;
+
+	//read from file
+	ifstream is;
+	is.open(jsonFileName, ios::binary);
+
+	if (reader.parse(is, root)) {
+		hhmakeParameterList = alignmentToolLocation;
 		hhmakeParameterList += "hhmake";
 		for (Json::Value::iterator it = root["HHMakeParameterSetting"].begin();
 				it != root["HHMakeParameterSetting"].end(); it++)
@@ -87,12 +93,24 @@ void HHSearch64::jsonParser() const {
 			}
 
 		}
+	}
+	is.close();
+	Utility utility;
+	char* cmd = utility.convertStringToCharArr(hhmakeParameterList);
+	system(cmd);
+	printf("%s\n", cmd);
+}
 
-		cmd = utility.convertStringToCharArr(hhmakeParameterList);
-		system(cmd);
-		printf("%s\n", cmd);
+void HHSearch64::runHHSearch() {
+	Json::Reader reader;
+	Json::Value root;
 
-		string hhsearchParameterList = alignmentToolLocation;
+	//read from file
+	ifstream is;
+	is.open(jsonFileName, ios::binary);
+
+	if (reader.parse(is, root)) {
+		hhsearchParameterList = alignmentToolLocation;
 		hhsearchParameterList += "hhsearch ";
 		//"%shhsearch -i %squery.hhm -d %scal.hhm -cal -o %squery.hhrNR",
 		for (Json::Value::iterator it =
@@ -132,16 +150,30 @@ void HHSearch64::jsonParser() const {
 			}
 
 		}
+	}
+	is.close();
 
-		cmd = utility.convertStringToCharArr(hhsearchParameterList);
-		system(cmd);
-		printf("%s\n", cmd);
-
+	Utility utility;
+	char* cmd = utility.convertStringToCharArr(hhsearchParameterList);
+	system(cmd);
+	printf("%s\n", cmd);
+}
+void HHSearch64::readFastaFile(string fastaFile) {
+	ifstream ifs(fastaFile.c_str(), ios::in);
+	if (ifs.is_open()) {
+		getline(ifs, proteinName);
+		getline(ifs, aminoAcids);
+		ifs.close();
+	} else {
+		cout << "fasta file is unable to open" << endl;
 	}
 
-	is.close();
 }
 
-void HHSearch64::print() const {
-	cout << "This is the derived HHSearch64 class";
+void HHSearch64::executeAlignment() {
+	jsonParser();
+	readFastaFile(fastaFilename);
+	runAlignHits();
+	runHHMake();
+	runHHSearch();
 }

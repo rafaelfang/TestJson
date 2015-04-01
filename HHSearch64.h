@@ -5,8 +5,8 @@
  *      Author: Chao
  */
 
-#ifndef HHSEARCH64_H_
-#define HHSEARCH64_H_
+#ifndef TESTBLAST_HHSEARCH64_H_
+#define TESTBLAST_HHSEARCH64_H_
 #include <assert.h>
 #include <iostream>
 #include <fstream>
@@ -17,9 +17,22 @@
 class HHSearch64: public AlignmentTool {
 public:
 	HHSearch64(char*);
-	virtual void jsonParser() const;
-	virtual void print() const;
+	virtual void jsonParser();
+	void readFastaFile(string );
+	void runAlignHits();
+	void runHHMake();
+	void runHHSearch();
+	virtual void executeAlignment();
 	virtual ~HHSearch64();
+private:
+	string alignhitsParameterList;
+	string hhmakeParameterList;
+	string hhsearchParameterList;
+	string fastaFilename;
+	string alignmentToolLocation;
+	string databaseLocation;
+	string experimentLocation;
+	string _a3m;
 };
 
-#endif /* HHSEARCH64_H_ */
+#endif /* TESTBLAST_HHSEARCH64_H_ */
