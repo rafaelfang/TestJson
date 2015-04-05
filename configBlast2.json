@@ -1,18 +1,21 @@
 {
-      "fastaFilename":"T0837.fasta",
 	"alignmentToolLocation":"~lihongb/Tools/BLAST2_2_21/bin/",
-	"databaseLocation":"~lihongb/DATABASE/LocalDB/",  
+	"databaseLocation":"~lihongb/DATABASE/nr/",  
 	"experimentLocation":"~cf797/test/testAlignment/",
+	"fastaFileLocation":"~cf797/test/Proteins/",
 	"parameterSetting":
 	{
-		"-i":"T0837.seq",
-		"-o":"query.blaNR",
-		"-d":"MUFOLD_07222012_AA",
+		
+		"-o":"query.blaPDB",
+		"-R":"query.chk",
+		"-Q":"query.profile",
+		"-d":"nr.01",
+		"-e": 10,
 		"-v": 5000,
 		"-b": 5000,
 		"-j": 3,
 		"-h": 0.01,
-		"-C":"query.chk"
+		"-i":"_.fasta"
 
 	}
   
