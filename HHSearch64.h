@@ -18,18 +18,21 @@ class HHSearch64: public AlignmentTool {
 public:
 	HHSearch64(char*);
 	virtual void jsonParser();
-	void setHHSearchLibrary();
-	void readFastaFile(string );
+
+	void setJsonFilename(string);
 	void runAlignHits();
 	void runHHMake();
 	void runHHSearch();
-	virtual void executeAlignment();
+	virtual void executeAlignment(string);
+	virtual void generateIndividualProteinFolder();
 	virtual ~HHSearch64();
 private:
+	string jsonFilename;
+	string fastaFilename;
+	string fastaFileLocation;
 	string alignhitsParameterList;
 	string hhmakeParameterList;
 	string hhsearchParameterList;
-	string fastaFilename;
 	string alignmentToolLocation;
 	string databaseLocation;
 	string experimentLocation;
