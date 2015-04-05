@@ -8,43 +8,46 @@
 #include "Blast.h"
 using namespace std;
 
-Blast::Blast(char* jsonFileName) :
-		AlignmentTool(jsonFileName) {
+Blast::Blast(char* rootName) :
+		AlignmentTool(rootName) {
+	fastaFilename = rootName;
+	fastaFilename += ".fasta";
 
 }
 Blast::~Blast() {
 
 }
-
-void Blast::readFastaFile(string fastaFile) {
-	ifstream ifs(fastaFile.c_str(), ios::in);
-	if (ifs.is_open()) {
-		getline(ifs, proteinName);
-		//cout<<proteinName<<endl;;
-		getline(ifs, aminoAcids);
-		//cout<<aminoAcids<<endl;;
-		ifs.close();
-	} else {
-		cout << "fasta file is unable to open" << endl;
-	}
-
+void Blast::setJsonFilename(string theJsonFilename) {
+	jsonFilename = theJsonFilename;
 }
+
+void Blast::generateIndividualProteinFolder() {
+	string individualProteinPath = "mkdir -p ";
+	individualProteinPath += experimentLocation;
+	individualProteinPath += "/";
+	individualProteinPath += rootName;
+	Utility utility;
+	char* cmd = utility.convertStringToCharArr(individualProteinPath);
+	printf("%s\n", cmd);
+	system(cmd);
+}
+
 void Blast::jsonParser() {
 	Json::Reader reader;
 	Json::Value root;
 
 	//read from file
 	ifstream is;
-	is.open(jsonFileName, ios::binary);
+	is.open(jsonFilename.c_str(), ios::binary);
 
 	if (reader.parse(is, root)) {
 
 		//read info from root
-		fastaFilename = root["fastaFilename"].asString();
+
 		alignmentToolLocation = root["alignmentToolLocation"].asString();
 		databaseLocation = root["databaseLocation"].asString();
 		experimentLocation = root["experimentLocation"].asString();
-
+		fastaFileLocation = root["fastaFileLocation"].asString();
 		parameterList = alignmentToolLocation;
 		parameterList += "blastpgp";
 
@@ -63,19 +66,29 @@ void Blast::jsonParser() {
 
 			if (tempKey.compare("-i") == 0) {
 				parameterList += " -i ";
-				parameterList += experimentLocation;
+				parameterList += fastaFileLocation;
+				parameterList += "/";
 				parameterList += fastaFilename;
 			} else if (tempKey.compare("-o") == 0) {
 				parameterList += " -o ";
 				parameterList += experimentLocation;
+				parameterList += "/";
+				parameterList += rootName;
+				parameterList += "/";
 				parameterList += tempValue;
 			} else if (tempKey.compare("-R") == 0) {
 				parameterList += " -R ";
 				parameterList += experimentLocation;
+				parameterList += "/";
+				parameterList += rootName;
+				parameterList += "/";
 				parameterList += tempValue;
 			} else if (tempKey.compare("-Q") == 0) {
 				parameterList += " -Q ";
 				parameterList += experimentLocation;
+				parameterList += "/";
+				parameterList += rootName;
+				parameterList += "/";
 				parameterList += tempValue;
 			} else if (tempKey.compare("-d") == 0) {
 				parameterList += " -d ";
@@ -99,6 +112,9 @@ void Blast::jsonParser() {
 			} else if (tempKey.compare("-C") == 0) {
 				parameterList += " -C ";
 				parameterList += experimentLocation;
+				parameterList += "/";
+				parameterList += rootName;
+				parameterList += "/";
 				parameterList += tempValue;
 			}
 		}
@@ -108,9 +124,10 @@ void Blast::jsonParser() {
 	is.close();
 
 }
-void Blast::executeAlignment() {
+void Blast::executeAlignment(string configFile) {
+	setJsonFilename(configFile);
 	jsonParser();
-	readFastaFile(fastaFilename);
+	generateIndividualProteinFolder();
 	Utility utility;
 	char* cmd = utility.convertStringToCharArr(parameterList);
 	system(cmd);

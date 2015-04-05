@@ -19,13 +19,17 @@ public:
 	//constructor
 	Blast(char*);
 	virtual void jsonParser();
-	virtual void readFastaFile(string );
-	virtual void executeAlignment();
+
+	virtual void executeAlignment(string);
+	virtual void generateIndividualProteinFolder();
+	void setJsonFilename(string);
 	virtual ~Blast();
 
 private:
+	string jsonFilename;
 	string fastaFilename;
 	string alignmentToolLocation;
+	string fastaFileLocation;
 	string databaseLocation;
 	string experimentLocation;
 	string parameterList;
