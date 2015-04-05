@@ -15,20 +15,23 @@ int main(int argc, char* argv[]) {
 	//export HHLIB=<install_dir>/lib/hh
 	//export HHLIB=~lihongb/Tools/hhsearch64/lib/hh
 
-	int numOfExp = 0;
-	if (argc == 0 || argc == 1) {
+	if (argc < 3) {
 		cout << "not enough arguments provided!" << endl;
 		exit(-1);
 	}
-	for (numOfExp = 1; numOfExp <= (argc - 1) / 2; numOfExp++) {
-		string methodChose(argv[2*numOfExp]);
-		if (methodChose.compare("blast") == 0) {
-			Blast blast(argv[2*numOfExp-1]);
-			blast.executeAlignment();
-		} else if (methodChose.compare("hhsearch") == 0) {
-			HHSearch64 hhsearch(argv[2*numOfExp-1]);
-			hhsearch.executeAlignment();
-		}
+
+	string methodChose(argv[1]);
+	if (methodChose.compare("-blast") == 0) {
+		Blast blast(argv[2]);
+		blast.executeAlignment("configBlast1.json");
+		blast.executeAlignment("configBlast2.json");
+	} else if (methodChose.compare("-hhsearch") == 0) {
+		Blast blast(argv[2]);
+		blast.executeAlignment("configBlast1.json");
+		blast.executeAlignment("configBlast2.json");
+		HHSearch64 hhsearch(argv[2]);
+		hhsearch.executeAlignment("configHHSearch1.json");
+		hhsearch.executeAlignment("configHHSearch2.json");
 	}
 
 }
