@@ -9,8 +9,9 @@
 #include <iostream>
 using namespace std;
 
-AlignmentTool::AlignmentTool(char* myJsonFileName) {
-	jsonFileName = myJsonFileName;
+AlignmentTool::AlignmentTool(char* theRootName) {
+	rootName = theRootName;
+
 }
 
 AlignmentTool::~AlignmentTool() {

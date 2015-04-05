@@ -22,14 +22,13 @@ public:
 	virtual ~AlignmentTool();
 
 	virtual void jsonParser() =0;
-	virtual void readFastaFile(string)=0;
-	virtual void executeAlignment()=0;
+	virtual void generateIndividualProteinFolder()=0;
+	virtual void executeAlignment(string)=0;
 
 
 protected:
-	char* jsonFileName;
-	string proteinName;
-	string aminoAcids;
+	char* rootName;
+
 };
 
 #endif /* TESTBLAST_ALIGNMENTTOOL_H_ */
