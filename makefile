@@ -1,5 +1,5 @@
-all: runner.o jsoncpp.o AlignmentTool.o Blast.o HHSearch64.o Utility.o
-	g++ runner.o jsoncpp.o AlignmentTool.o Blast.o HHSearch64.o Utility.o -o all
+mufoldAlignment: runner.o jsoncpp.o AlignmentTool.o Blast.o HHSearch64.o Utility.o
+	g++ runner.o jsoncpp.o AlignmentTool.o Blast.o HHSearch64.o Utility.o -o mufoldAlignment
 
 runner.o: runner.cpp
 	g++ -c runner.cpp	
@@ -17,4 +17,4 @@ Utility.o: Utility.cpp
 
 
 clean:
-	rm *.o all
+	rm *.o mufoldAlignment
