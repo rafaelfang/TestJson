@@ -23,15 +23,15 @@ int main(int argc, char* argv[]) {
 	string methodChose(argv[1]);
 	if (methodChose.compare("-blast") == 0) {
 		Blast blast(argv[2]);
-		blast.executeAlignment("configBlast1.json");
-		blast.executeAlignment("configBlast2.json");
+		blast.executeAlignment("configBlastNR.json");
+		blast.executeAlignment("configBlastPDB.json");
 	} else if (methodChose.compare("-hhsearch") == 0) {
 		Blast blast(argv[2]);
-		blast.executeAlignment("configBlast1.json");
-		blast.executeAlignment("configBlast2.json");
+		blast.executeAlignment("configBlastNR.json");
+		blast.executeAlignment("configBlastPDB.json");
 		HHSearch64 hhsearch(argv[2]);
-		hhsearch.executeAlignment("configHHSearch1.json");
-		hhsearch.executeAlignment("configHHSearch2.json");
+		hhsearch.executeAlignment("configHHSearchhhm.json");
+		hhsearch.executeAlignment("configHHSearchhhmNR.json");
 	}
 
 }
