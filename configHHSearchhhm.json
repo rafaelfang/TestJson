@@ -1,0 +1,22 @@
+{
+	"alignmentToolLocation":"~lihongb/Tools/hhsearch64/bin/",
+	"databaseLocation":"~lihongb/DATABASE/HMMDB/",  
+	"experimentLocation":"~cf797/test/testAlignment/",
+	"fastaFileLocation":"~cf797/test/Proteins/",
+	"-a3m":"query.a3m",
+	"HHMakeParameterSetting":
+	{
+		"-i":"query.a3m",
+		"-name":"query",
+		"-o":"query.hhm"
+	},
+	"HHSearchParameterSetting":
+	{
+		"-i":"query.hhm",
+		"-d":"MUFOLD_07222012_HHM.hhm",
+		"-o":"query.hhr",
+		"-b":50,
+		"additional":"-glob"
+	}
+  
+}
