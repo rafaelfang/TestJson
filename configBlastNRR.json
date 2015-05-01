@@ -1,18 +1,19 @@
 {
 	"alignmentToolLocation":"~lihongb/Tools/BLAST2_2_21/bin/",
-	"databaseLocation":"~lihongb/DATABASE/LocalDB/",  
+	"databaseLocation":"~lihongb/DATABASE/nr/",  
 	"experimentLocation":"~cf797/test/testAlignment/",
 	"fastaFileLocation":"~cf797/test/Proteins/",
 	"parameterSetting":
 	{
-		"-i":"T0837.seq",
+		
 		"-o":"query.blaNR",
-		"-d":"MUFOLD_07222012_AA",
+		"-R":"query.chk",
+		"-d":"nr.01",
 		"-v": 5000,
 		"-b": 5000,
-		"-j": 3,
-		"-h": 0.01,
-		"-C":"query.chk"
+		"-j": 1,
+		"-h": 0.001,
+		"-i":"_.fasta"
 
 	}
   
