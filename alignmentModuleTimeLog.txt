@@ -1,0 +1,230 @@
+T0644
+ running time: 152 
+T0645
+ running time: 421 
+T0646
+ running time: 99 
+T0647
+ running time: 168 
+T0648
+ running time: 114 
+T0649
+ running time: 185 
+T0650
+ running time: 412 
+T0651
+ running time: 228 
+T0652
+ running time: 258 
+T0653
+ running time: 403 
+T0654
+ running time: 161 
+T0655
+ running time: 165 
+T0656
+ running time: 142 
+T0657
+ running time: 154 
+T0658
+ running time: 426 
+T0659
+ running time: 97 
+T0660
+ running time: 122 
+T0661
+ running time: 189 
+T0662
+ running time: 92 
+T0663
+ running time: 181 
+T0664
+ running time: 426 
+T0665
+ running time: 80 
+T0666
+ running time: 29 
+T0667
+ running time: 187 
+T0668
+ running time: 14 
+T0669
+ running time: 116 
+T0670
+ running time: 145 
+T0671
+ running time: 401 
+T0672
+ running time: 319 
+T0673
+ running time: 97 
+T0674
+ running time: 281 
+T0675
+ running time: 148 
+T0676
+ running time: 172 
+T0677
+ running time: 148 
+T0678
+ running time: 142 
+T0679
+ running time: 186 
+T0680
+ running time: 118 
+T0681
+ running time: 184 
+T0682
+ running time: 227 
+T0683
+ running time: 350 
+T0684
+ running time: 215 
+T0685
+ running time: 231 
+T0686
+ running time: 232 
+T0687
+ running time: 199 
+T0688
+ running time: 254 
+T0689
+ running time: 189 
+T0690
+ running time: 384 
+T0691
+ running time: 145 
+T0692
+ running time: 401 
+T0693
+ running time: 306 
+T0694
+ running time: 270 
+T0695
+ running time: 628 
+T0696
+ running time: 120 
+T0697
+ running time: 415 
+T0698
+ running time: 14 
+T0699
+ running time: 214 
+T0700
+ running time: 99 
+T0701
+ running time: 278 
+T0702
+ running time: 253 
+T0703
+ running time: 239 
+T0704
+ running time: 254 
+T0705
+ running time: 355 
+T0706
+ running time: 196 
+T0707
+ running time: 287 
+T0708
+ running time: 177 
+T0709
+ running time: 55 
+T0710
+ running time: 240 
+T0711
+ running time: 58 
+T0712
+ running time: 191 
+T0713
+ running time: 656 
+T0714
+ running time: 130 
+T0715
+ running time: 389 
+T0716
+ running time: 95 
+T0717
+ running time: 280 
+T0718
+ running time: 144 
+T0719
+ running time: 528 
+T0720
+ running time: 31 
+T0721
+ running time: 296 
+T0722
+ running time: 147 
+T0723
+ running time: 131 
+T0724
+ running time: 222 
+T0725
+ running time: 308 
+T0726
+ running time: 480 
+T0727
+ running time: 106 
+T0728
+ running time: 18 
+T0729
+ running time: 136 
+T0730
+ running time: 22 
+T0731
+ running time: 90 
+T0732
+ running time: 46 
+T0733
+ running time: 334 
+T0734
+ running time: 182 
+T0735
+ running time: 281 
+T0736
+ running time: 157 
+T0737
+ running time: 244 
+T0738
+ running time: 291 
+T0739
+ running time: 582 
+T0740
+ running time: 18 
+T0741
+ running time: 19 
+T0742
+ running time: 241 
+T0743
+ running time: 130 
+T0744
+ running time: 270 
+T0745
+ running time: 171 
+T0746
+ running time: 289 
+T0747
+ running time: 116 
+T0748
+ running time: 89 
+T0749
+ running time: 367 
+T0750
+ running time: 20 
+T0751
+ running time: 107 
+T0752
+ running time: 147 
+T0753
+ running time: 108 
+T0754
+ running time: 100 
+T0755
+ running time: 226 
+T0756
+ running time: 162 
+T0757
+ running time: 217 
+T0758
+ running time: 325 
