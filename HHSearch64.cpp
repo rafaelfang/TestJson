@@ -66,7 +66,7 @@ void HHSearch64::runAlignHits() {
 	alignhitsParameterList += "/";
 	alignhitsParameterList += rootName;
 	alignhitsParameterList += "/";
-	alignhitsParameterList += "query.blaPDB ";
+	alignhitsParameterList += "query.blaNR ";
 	alignhitsParameterList += "-a3m ";
 	alignhitsParameterList += experimentLocation;
 	alignhitsParameterList += "/";
