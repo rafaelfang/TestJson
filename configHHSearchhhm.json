@@ -1,5 +1,5 @@
 {
-	"alignmentToolLocation":"~lihongb/Tools/hhsearch64/bin/",
+	"alignmentToolLocation":"~lihongb/Tools/hhsearch/",
 	"databaseLocation":"~lihongb/DATABASE/HMMDB/",  
 	"experimentLocation":"~cf797/test/testAlignment/",
 	"fastaFileLocation":"~cf797/test/Proteins/",
@@ -13,10 +13,10 @@
 	"HHSearchParameterSetting":
 	{
 		"-i":"query.hhm",
-		"-d":"MUFOLD_07222012_HHM.hhm",
+		"-d":"MUFOLD_01092013_HHM.hhm",
 		"-o":"query.hhr",
-		"-b":50,
-		"additional":"-glob"
+		"-b":50
+		
 	}
   
 }
