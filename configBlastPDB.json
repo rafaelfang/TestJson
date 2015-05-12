@@ -9,7 +9,7 @@
 		"-o":"query.blaPDB",
 		"-R":"query.chk",
 		"-Q":"query.profile",
-		"-d":"MUFOLD_04302014_AA",
+		"-d":"MUFOLD_01092013_AA",
 		"-e": 11000,
 		"-i":"_.fasta"
 
