@@ -1,12 +1,11 @@
-#include <stdio.h>
-#include <assert.h>
+#include <cstdlib>
 #include <iostream>
-#include <fstream>
+#include <string>
 
-#include "AlignmentTool.h"
-#include "json/json.h"
 #include "Blast.h"
+#include "CNFSearch.h"
 #include "HHSearch64.h"
+
 using namespace std;
 
 int main(int argc, char* argv[]) {
@@ -31,6 +30,9 @@ int main(int argc, char* argv[]) {
 		HHSearch64 hhsearch(argv[2]);
 		hhsearch.executeAlignment("configHHSearchhhm.json");
 		hhsearch.executeAlignment("configHHSearchhhmNR.json");
+	}else if(methodChose.compare("-cnfsearch")==0){
+		CNFSearch cnfSearch(argv[2]);
+		cnfSearch.executeAlignment("configCNFSearch.json");
 	}
 
 }
