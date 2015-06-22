@@ -1,0 +1,25 @@
+{
+	"alignmentToolLocation":"/home/cf797/Tools/CNFsearch1.66_release/",
+	"databaseLocation":"~lihongb/DATABASE/CNFDB/",  
+	"experimentLocation":"~cf797/test/testAlignment/",
+	"fastaFileLocation":"~cf797/test/Proteins/",
+	"buildFeaturesParameterSetting":
+	{
+		"-i":"_.fasta",
+		"-c":2,
+		"-o":"_.tgt"
+	},
+	"CNFSearchParameterSetting":
+	{
+		"-a":2,
+		"-q":"_rootName",
+		"-p":0.001,
+		"-g":"_path_tgt_locates",
+		"-o":"_.rank",
+		"-d":"TPL_BC100/",
+		"-l":"bc100_list ",
+		"-n":100
+		
+	}
+  
+}
