@@ -115,15 +115,17 @@ void CNFSearch::runBuildFeature() {
 
 	char* cmd1 = (char*) toolLocation.c_str();
 	int ret = chdir(cmd1);
-	printf("%s\n", cmd1);
+	//printf("%s\n", cmd1);
 	//cout<<ret<<endl;
-	system("pwd");
+	//system("pwd");
+	cout<<"build feature start on target "<<rootName<<endl;
 
 	//build features
 	Utility utility;
 	char* cmd = utility.convertStringToCharArr(buildFeatureParameterList);
 	system(cmd);
-	printf("%s\n", cmd);
+	//printf("%s\n", cmd);
+	cout<<"build feature on target "<<rootName<<" end"<<endl;
 }
 
 void CNFSearch::runCNFSearch() {
@@ -200,16 +202,17 @@ void CNFSearch::runCNFSearch() {
 
 	//change to tool install location
 	string toolLocation = alignmentToolLocation;
-
+	cout<<"cnfsearch start on target "<<rootName<<endl;
 	char* cmd1 = (char*) toolLocation.c_str();
 	int ret = chdir(cmd1);
 	printf("%s\n", cmd1);
 	//cout<<ret<<endl;
-	system("pwd");
+	//system("pwd");
 
 	char* cmd = (char*) cnfSearchParameterList.c_str();
 	system(cmd);
-	printf("%s\n", cmd);
+	//printf("%s\n", cmd);
+	cout<<"cnfsearch on target "<<rootName<<" finish"<<endl;
 }
 void CNFSearch::executeAlignment(string configFile) {
 	setJsonFilename(configFile);
