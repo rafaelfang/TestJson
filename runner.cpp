@@ -10,7 +10,6 @@ using namespace std;
 
 int main(int argc, char* argv[]) {
 
-
 	if (argc < 3) {
 		cout << "not enough arguments provided!" << endl;
 		exit(-1);
@@ -28,9 +27,9 @@ int main(int argc, char* argv[]) {
 		blast.executeAlignment("configBlastNRR.json");
 		blast.executeAlignment("configBlastPDB.json");
 		HHSearch64 hhsearch(argv[2]);
-		hhsearch.executeAlignment("configHHSearchhhm.json");
-		hhsearch.executeAlignment("configHHSearchhhmNR.json");
-	}else if(methodChose.compare("-cnfsearch")==0){
+		hhsearch.executeAlignment("configHHSearch.json");
+
+	} else if (methodChose.compare("-cnfsearch") == 0) {
 		CNFSearch cnfSearch(argv[2]);
 		cnfSearch.executeAlignment("configCNFSearch.json");
 	}
