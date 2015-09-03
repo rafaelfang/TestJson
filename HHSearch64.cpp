@@ -12,7 +12,7 @@ HHSearch64::HHSearch64(char* rootName) :
 	// TODO Auto-generated constructor stub
 	fastaFilename = rootName;
 	fastaFilename += ".fasta";
-	jsonFilename = "configHHSearch.json";
+
 }
 
 HHSearch64::~HHSearch64() {
@@ -33,7 +33,6 @@ void HHSearch64::setJsonFilename(string theJsonFilename) {
 	jsonFilename = theJsonFilename;
 }
 
-
 void HHSearch64::jsonParser() {
 	Json::Reader reader;
 	Json::Value root;
@@ -44,15 +43,13 @@ void HHSearch64::jsonParser() {
 
 	if (reader.parse(is, root)) {
 
-		//read info from root
-		fastaFilename = root["fastaFilename"].asString();
 		//cout<<fastaFilename<<endl;
 		alignmentToolLocation = root["alignmentToolLocation"].asString();
 		databaseLocation = root["databaseLocation"].asString();
 		experimentLocation = root["experimentLocation"].asString();
 		fastaFileLocation = root["fastaFileLocation"].asString();
 		_a3m = root["-a3m"].asString();
-
+		//cout<<"asdfasdfadsf"<<alignmentToolLocation<<databaseLocation<<endl;
 	}
 
 	is.close();
@@ -77,7 +74,7 @@ void HHSearch64::runAlignHits() {
 	Utility utility;
 	char* cmd = utility.convertStringToCharArr(alignhitsParameterList);
 	system(cmd);
-	printf("%s\n", cmd);
+	printf("--------1. runAlignHits command is:------------\n%s\n", cmd);
 }
 void HHSearch64::runHHMake() {
 	Json::Reader reader;
@@ -128,10 +125,10 @@ void HHSearch64::runHHMake() {
 	Utility utility;
 	char* cmd = utility.convertStringToCharArr(hhmakeParameterList);
 	system(cmd);
-	printf("%s\n", cmd);
+	printf("----------2. runHHMake command is:--------- \n%s\n", cmd);
 }
 
-void HHSearch64::runHHSearch() {
+void HHSearch64::runHHSearch(string const parameterSetting) {
 	Json::Reader reader;
 	Json::Value root;
 
@@ -143,9 +140,8 @@ void HHSearch64::runHHSearch() {
 		hhsearchParameterList = alignmentToolLocation;
 		hhsearchParameterList += "hhsearch ";
 		//"%shhsearch -i %squery.hhm -d %scal.hhm -cal -o %squery.hhrNR",
-		for (Json::Value::iterator it =
-				root["HHSearchParameterSetting"].begin();
-				it != root["HHSearchParameterSetting"].end(); it++)
+		for (Json::Value::iterator it = root[parameterSetting].begin();
+				it != root[parameterSetting].end(); it++)
 
 				{
 
@@ -192,15 +188,16 @@ void HHSearch64::runHHSearch() {
 	Utility utility;
 	char* cmd = utility.convertStringToCharArr(hhsearchParameterList);
 	system(cmd);
-	printf("%s\n", cmd);
+	printf("-----------3. runHHSearch command is:----------\n%s\n", cmd);
 }
 
 void HHSearch64::executeAlignment(string configFile) {
 	setJsonFilename(configFile);
 	jsonParser();
 
-
 	runAlignHits();
 	runHHMake();
-	runHHSearch();
+	runHHSearch("HHSearchNRParameterSetting");
+	runHHSearch("HHSearchParameterSetting");
+
 }
