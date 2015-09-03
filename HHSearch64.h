@@ -22,7 +22,7 @@ public:
 	void setJsonFilename(string);
 	void runAlignHits();
 	void runHHMake();
-	void runHHSearch();
+	void runHHSearch(string const);
 	virtual void executeAlignment(string);
 	virtual void generateIndividualProteinFolder();
 	virtual ~HHSearch64();
