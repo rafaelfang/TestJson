@@ -1,8 +1,8 @@
 {
 	"alignmentToolLocation":"~lihongb/Tools/hhsearch/",
-	"databaseLocation":"~lihongb/DATABASE/HMMDB/",  
-	"experimentLocation":"~cf797/test/testAlignment/",
-	"fastaFileLocation":"~cf797/test/Proteins/",
+	"databaseLocation":"~cf797/test/DATABASE/HHMDB/",  
+	"experimentLocation":"~cf797/test/casp11Alignment/",
+	"fastaFileLocation":"~cf797/test/casp11Seq/",
 	"-a3m":"query.a3m",
 	"HHMakeParameterSetting":
 	{

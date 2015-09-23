@@ -1,8 +1,8 @@
 {
 	"alignmentToolLocation":"~lihongb/Tools/BLAST2_2_21/bin/",
 	"databaseLocation":"~lihongb/DATABASE/nr/",  
-	"experimentLocation":"~cf797/test/testAlignment/",
-	"fastaFileLocation":"~cf797/test/Proteins/",
+	"experimentLocation":"~cf797/test/casp11Alignment/",
+	"fastaFileLocation":"~cf797/test/casp11Seq/",
 	"parameterSetting":
 	{
 		

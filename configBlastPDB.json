@@ -1,15 +1,15 @@
 {
 	"alignmentToolLocation":"~lihongb/Tools/BLAST2_2_21/bin/",
-	"databaseLocation":"~lihongb/DATABASE/LocalDB/",  
-	"experimentLocation":"~cf797/test/testAlignment/",
-	"fastaFileLocation":"~cf797/test/Proteins/",
+	"databaseLocation":"~cf797/test/DATABASE/LocalDB/",  
+	"experimentLocation":"~cf797/test/casp11Alignment/",
+	"fastaFileLocation":"~cf797/test/casp11Seq/",
 	"parameterSetting":
 	{
 		
 		"-o":"query.blaPDB",
 		"-R":"query.chk",
 		"-Q":"query.profile",
-		"-d":"MUFOLD_01092013_AA",
+		"-d":"MUFOLD_04302014_AA",
 		"-e": 11000,
 		"-i":"_.fasta"
 
