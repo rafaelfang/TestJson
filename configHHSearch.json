@@ -1,8 +1,8 @@
 {
-	"alignmentToolLocation":"~lihongb/Tools/hhsearch/",
-	"databaseLocation":"~cf797/test/DATABASE/HHMDB/",  
-	"experimentLocation":"~cf797/test/casp11Alignment/",
-	"fastaFileLocation":"~cf797/test/casp11Seq/",
+	"alignmentToolLocation":"/home/lihongb/Tools/hhsearch/",
+	"databaseLocation":"/home/cf797/test/DATABASE/HHMDB/",  
+	"experimentLocation":"/home/cf797/test/casp10_01092013_blastpgp_hhsearch_glob/",
+	"fastaFileLocation":"/home/cf797/test/casp10Seq/",
 	"-a3m":"query.a3m",
 	"HHMakeParameterSetting":
 	{
