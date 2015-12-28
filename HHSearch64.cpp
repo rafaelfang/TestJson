@@ -7,6 +7,12 @@
 
 #include "HHSearch64.h"
 
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <cwchar>
+#include <string>
+
 HHSearch64::HHSearch64(char* rootName) :
 		AlignmentTool(rootName) {
 	// TODO Auto-generated constructor stub
@@ -17,6 +23,61 @@ HHSearch64::HHSearch64(char* rootName) :
 
 HHSearch64::~HHSearch64() {
 	// TODO Auto-generated destructor stub
+}
+void HHSearch64::addQueryInfo2a3m() {
+	//make a copy of query.a3m into queryOriginal.a3m
+	char pcLine[2000];
+	FILE* fptrOriginal, *fptr;
+	string fileLocation(experimentLocation);
+	fileLocation += rootName;
+	fileLocation += "/query.a3m";
+	fptr = fopen((char*) fileLocation.c_str(), "r");
+	string fileOriginalLocation(experimentLocation);
+	fileOriginalLocation += rootName;
+	fileOriginalLocation += "/queryOriginal.a3m";
+	fptrOriginal = fopen((char*) fileOriginalLocation.c_str(), "w");
+
+	while (1) {
+		fgets(pcLine, 2000, fptr);
+		if(feof(fptr)){
+			break;
+		}
+		fprintf(fptrOriginal, "%s", pcLine);
+	}
+	fclose(fptrOriginal);
+	fclose(fptr);
+
+	//add query info to a3m
+	fileOriginalLocation = "";
+	fileOriginalLocation += experimentLocation;
+	fileOriginalLocation += rootName;
+	fileOriginalLocation += "/queryOriginal.a3m";
+	fptrOriginal = fopen((char*) fileOriginalLocation.c_str(), "r");
+
+	fileLocation = "";
+	fileLocation += experimentLocation;
+	fileLocation += rootName;
+	fileLocation += "/query.a3m";
+	fptr = fopen((char*) fileLocation.c_str(), "w");
+
+	string fastaFilePosition(fastaFileLocation);
+	fastaFilePosition += fastaFilename;
+	FILE *fptr_fasta = fopen((char*) fastaFilePosition.c_str(), "r");
+	fgets(pcLine, 2000, fptr_fasta);
+	string proteinName(pcLine);
+	fprintf(fptr, ">pdb|%s\n", (char*)proteinName.substr(1,5).c_str());
+	fgets(pcLine, 2000, fptr_fasta);
+	fprintf(fptr, "%s", pcLine);
+	fclose(fptr_fasta);
+	while (1) {
+		fgets(pcLine, 2000, fptrOriginal);
+		if(feof(fptrOriginal)){
+			break;
+		}
+		fprintf(fptr, "%s", pcLine);
+	}
+	fclose(fptr);
+	fclose(fptrOriginal);
 }
 
 void HHSearch64::generateIndividualProteinFolder() {
@@ -196,6 +257,7 @@ void HHSearch64::executeAlignment(string configFile) {
 	jsonParser();
 
 	runAlignHits();
+	addQueryInfo2a3m();
 	runHHMake();
 	runHHSearch("HHSearchNRParameterSetting");
 	runHHSearch("HHSearchParameterSetting");

@@ -19,6 +19,7 @@ public:
 	HHSearch64(char*);
 	virtual void jsonParser();
 
+	void addQueryInfo2a3m();
 	void setJsonFilename(string);
 	void runAlignHits();
 	void runHHMake();
