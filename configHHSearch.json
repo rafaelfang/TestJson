@@ -1,8 +1,8 @@
 {
 	"alignmentToolLocation":"/home/lihongb/Tools/hhsearch/",
 	"databaseLocation":"/home/cf797/test/DATABASE/HHMDB/",  
-	"experimentLocation":"/home/cf797/test/casp10_01092013_blastpgp_hhsearch_glob/",
-	"fastaFileLocation":"/home/cf797/test/casp10Seq/",
+	"experimentLocation":"/home/cf797/test/casp11_01092013_blastpgp_hhsearch_local/",
+	"fastaFileLocation":"/home/cf797/test/casp11Seq/",
 	"-a3m":"query.a3m",
 	"HHMakeParameterSetting":
 	{
@@ -24,7 +24,7 @@
 		"-d":"MUFOLD_01092013_HHM.hhm",
 		"-o":"query.hhr",
 		"-b":50,
-		"additional":"-glob"
+		"additional":"-local"
 	
 	}
   
