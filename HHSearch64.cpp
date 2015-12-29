@@ -67,7 +67,7 @@ void HHSearch64::addQueryInfo2a3m() {
 	string proteinName(pcLine);
 	fprintf(fptr, ">pdb|%s\n", (char*)proteinName.substr(1,5).c_str());
 	fgets(pcLine, 2000, fptr_fasta);
-	fprintf(fptr, "%s", pcLine);
+	fprintf(fptr, "%s\n", pcLine);
 	fclose(fptr_fasta);
 	while (1) {
 		fgets(pcLine, 2000, fptrOriginal);
